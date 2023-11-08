@@ -1,0 +1,23 @@
+<!-- search.component.html -->
+
+<div class="bg-blue-500 text-white text-center py-4">
+  <h1 class="text-3xl font-semibold">Welcome to GITHUB EXPLORER</h1>
+  <p class="text-lg">Traverse through GitHub profiles</p>
+</div>
+
+
+<div class="my-4">
+  <input [(ngModel)]="username" class="w-1/2 border p-2" placeholder="Enter GitHub username" />
+  <button (click)="searchRepos()" class="bg-blue-500 text-white p-2 rounded ml-2">Search</button>
+  <app-repository-list [repos]="repos"></app-repository-list>
+</div>
+
+<div>
+  <label for="perPage">Repositories per page:</label>
+  <select id="perPage" [(ngModel)]="repositoriesPerPage" (change)="loadRepos()">
+    <option [value]="10">10</option>
+    <option [value]="20">20</option>
+    <option [value]="50">50</option>
+    <option [value]="100">100</option>
+  </select>
+</div>

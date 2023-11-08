@@ -1,0 +1,12 @@
+<!-- repository-list.component.html -->
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  <div *ngFor="let repo of repos" class="bg-white rounded-lg p-4 shadow-md">
+    <h2 class="text-xl font-semibold">{{ repo.name }}</h2>
+    <div class="mt-2">
+      <div *ngFor="let topic of repo.topics" class="inline-block bg-gray-200 text-gray-600 text-sm rounded-full p-1 m-1">
+        {{ topic }}
+      </div>
+    </div>
+  </div>
+</div>

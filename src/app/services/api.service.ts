@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
+import { Observable, tap, throwError } from 'rxjs';
+
+import { Repository } from '../repository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  private baseUrl = 'https://api.github.com';
 
   constructor(
     private httpClient: HttpClient
@@ -16,4 +19,18 @@ export class ApiService {
   }
 
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  /*getUserRepos(username: string, page: number, perPage: number) {
+    const url = `${this.baseUrl}/users/${username}/repos`;
+    const params = { page: page.toString(), per_page: perPage.toString() };
+    return this.httpClient.get(url, { params });
+  }*/
+  getUserRepos(username: string, page: number, perPage: number): Observable<Repository[]> {
+    const url = `${this.baseUrl}/users/${username}/repos`;
+    const params = {
+      page: page.toString(),
+      per_page: perPage.toString(),
+    };
+  
+    return this.httpClient.get<Repository[]>(url, { params });
+  }
 }
